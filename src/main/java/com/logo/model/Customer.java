@@ -1,9 +1,11 @@
 package com.logo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
 
+	private int id;
 	private String name;
 	private int age;
 	private List<Order> orderList;
@@ -14,6 +16,12 @@ public class Customer {
 		this.age = age;
 		this.orderList = orderList;
 	}
+
+//	public Customer(String name, int age){
+//		this.name = name;
+//		this.age = age;
+//		this.orderList = new ArrayList<>();
+//	}
 
 	public String getName() {
 		return name;
@@ -39,4 +47,11 @@ public class Customer {
 		this.orderList = orderList;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

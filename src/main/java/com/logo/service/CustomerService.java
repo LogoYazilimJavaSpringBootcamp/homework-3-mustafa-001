@@ -1,89 +1,83 @@
 package com.logo.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import com.logo.model.Customer;
+import com.logo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.logo.model.Customer;
-import com.logo.model.Order;
-import com.logo.model.Product;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
 
-	@Autowired
-	private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-	@Autowired
-	private ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-	public CustomerService(OrderService orderService) {
-		this.orderService = orderService;
-	}
+    @Autowired
+    private CustomerRepository customerRepository;
 
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
-	}
+    public CustomerService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
-	public Customer create(String name) {
-		Customer customer = new Customer(name, 25, new ArrayList<>());
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
-		System.out.println("orderService:" + orderService.toString());
-		// orderService.createOrder();
+    public Customer create(Customer request) {
+        System.out.println("Adding customer:" + request.toString());
 
-		System.out.println("productService:" + productService.toString());
+        return customerRepository.save(request);
+    }
 
-		return customer;
-	}
 
-	private List<Customer> prepareCustomerList() {
-		List<Customer> customers = new ArrayList<>();
-		customers.add(new Customer("bilisim.io", 25, new ArrayList<>()));
-		customers.add(new Customer("cem", 30, prepareOrderList()));
-		customers.add(new Customer("ömer", 21, prepareOrderList()));
-		customers.add(new Customer("haluk", 32, prepareOrderList()));
-		customers.add(new Customer("halil", 25, prepareOrderList()));
-		customers.add(new Customer("fatih", 18, prepareOrderList()));
-		return customers;
-	}
+    public List<Customer> getAllCustomers() {
 
-	private List<Order> prepareOrderList() {
-		List<Order> orders = new ArrayList<>();
-		int randomOrderNumber = new Random().nextInt(5);
-		for (int i = 0; i < randomOrderNumber; i++) {
-			Order order = new Order(prepareProductList(randomOrderNumber));
-			orders.add(order);
-		}
-		return orders;
-	}
+        // ProductService productService = new ProductService;
+        // singleton olduğunun kanıtı
+        System.out.println("CustomerService - productService:" + productService.toString());
+        System.out.println("CustomerService - productService:" + productService.url);
+        System.out.println("CustomerService - orderService:" + orderService.toString());
 
-	private List<Product> prepareProductList(int randomOrderNumber) {
-		List<Product> products = new ArrayList<>();
-		Random random = new Random();
-		products.add(new Product("MacBook Pro", random.nextDouble(1000)));
-		products.add(new Product("MacBook air", random.nextDouble(1000)));
-		products.add(new Product("Mac Mini", random.nextDouble(1000)));
-		products.add(new Product("iPhone 11", random.nextDouble(1000)));
-		products.add(new Product("iPhone 12", random.nextDouble(1000)));
+//		orderService.createOrder();
 
-		return products.stream().limit(randomOrderNumber).toList();
-	}
+//		return prepareCustomerList();
+        return customerRepository.getAll();
+    }
 
-	public List<Customer> getAllCustomers() {
+    public Optional<Customer> getCustomerByName(String name) {
+        return customerRepository.findByName(name);
+    }
 
-		// ProductService productService = new ProductService;
-		// singleton olduğunun kanıtı
-		System.out.println("CustomerService - productService:" + productService.toString());
-		System.out.println("CustomerService - productService:" + productService.url);
-		System.out.println("CustomerService - orderService:" + orderService.toString());
+    public Optional<Customer> getCustomerById(int id) {
+        return customerRepository.findById(id);
+    }
 
-		orderService.createOrder();
+    public Customer update(int id, Customer customer) {
+        System.out.println("Updating customer: " + id + "  to " + customer.toString());
+        var oldCustomerOpt = customerRepository.findById(id);
+        if (oldCustomerOpt.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        var oldCustomer = oldCustomerOpt.get();
+        if (!customer.getName().equals("")) {
+            oldCustomer.setName(customer.getName());
+        }
+        if (customer.getAge() != 0) oldCustomer.setAge(customer.getAge());
+        return oldCustomer;
+    }
 
-		return prepareCustomerList();
-	}
+    public void  delete(int id){
+        System.out.println("Deleting customer: " + id );
+        var customerOpt = customerRepository.findById(id);
+        if (customerOpt.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        customerRepository.delete(customerOpt.get());
+    }
 
 }
