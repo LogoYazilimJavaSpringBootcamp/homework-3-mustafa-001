@@ -13,7 +13,7 @@ import java.util.Random;
 @Repository
 public class CustomerRepository {
     private static final List<Customer> customers= new ArrayList<>();
-    private static int lastId = 0;
+    private static int nextId = 0;
 
 
     private List<Customer> prepareCustomerList() {
@@ -50,8 +50,8 @@ public class CustomerRepository {
     }
 
     public Customer save(Customer customer){
-        lastId += 1;
-        customer.setId(lastId);
+        customer.setId(nextId);
+        nextId += 1;
         customers.add(customer);
         return customer;
     }
