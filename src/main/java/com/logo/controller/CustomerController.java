@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @GetMapping("/active/{activeStatus}")
-    public List<Customer> getById(@PathVariable boolean activeStatus) {
+    public List<Customer> getByIsActive(@PathVariable boolean activeStatus) {
         return customerService.getByIsActive(activeStatus);
     }
 

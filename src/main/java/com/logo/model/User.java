@@ -6,7 +6,6 @@ import java.util.List;
 import com.logo.model.enums.FirmType;
 
 public class User {
-
 	private String name;
 	private String surname;
 	private String email;

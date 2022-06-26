@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+//Models a warehouse transaction in isbasi app.
+//İşbaşı uygulamasınının Stok ve Hizmet kısmındaki Stok Hareketleri kısmını modeller.
 public class StockTransaction {
     private int id;
     private String documentNumber;

@@ -3,6 +3,8 @@ package com.logo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+//Models a Customer/Supplier in isbasi app.
+//İşbaşı uygulamasındaki Müşteri/Tedarikçi kısımlarını modeller.
 public class Customer {
 
     private int id;

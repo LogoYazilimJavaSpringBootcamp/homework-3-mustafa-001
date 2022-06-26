@@ -6,6 +6,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Currency;
 
+//Common model for Product and Service in isbasi app.
+//İşbaşı uygulamasındaki Ürün ve Hizmetler kısmındaki Ürün ve Hizmetler için ortak model.
 @Data
 abstract class ProductOrService {
     protected int id;

@@ -12,6 +12,6 @@
 
 ### Aktif ve pasif müşterileri listeleyen endpoint için gerekli kodu yazın. (10 Puan)
 
-[CustomerController](src/main/java/com/logo/controller/CustomerController.java)
+[CustomerController](src/main/java/com/logo/controller/CustomerController.java#L35)
 
 [Endpointleri kullanmak için Postman konfigürasyonu `json`](isbasi.postman_collection.json)
