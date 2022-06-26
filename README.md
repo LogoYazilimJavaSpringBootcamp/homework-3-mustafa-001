@@ -1,3 +1,7 @@
+Sözel sorulara cevaplar [Cevaplar.md](Cevaplar.md) dosyasındadır.
+
+Kodda yapılması istenen kısımların koddaki yerlerinin [listesi.](Koddaİstenenler.md)
+
 ActiveMQ, Kafka ve RabbitMQ karşılaştırın. Örnek kodlar ile nasıl çalıştığını
 anlatın. (10 Puan)
 
