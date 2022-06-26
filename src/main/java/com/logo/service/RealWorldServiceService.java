@@ -40,7 +40,7 @@ public class RealWorldServiceService {
             oldService.setName(service.getName());
         }
         if (!service.isActive() ==  oldService.isActive()) oldService.setActive(service.isActive());
-        if (!service.getCode().equals(oldService.getCode())) oldService.setCode(service.getCode());
+        if (!service.getServiceCode().equals(oldService.getServiceCode())) oldService.setServiceCode(service.getServiceCode());
         if (!service.getCESSRate().equals(oldService.getCESSRate())) oldService.setCESSRate(service.getCESSRate());
         if (!service.getCurrency().equals(oldService.getCurrency())) oldService.setCurrency(service.getCurrency());
         if (!service.getPurchasePrice().equals(oldService.getPurchasePrice())) oldService.setPurchasePrice(service.getPurchasePrice());

@@ -1,65 +1,60 @@
 package com.logo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
 
-	private int id;
-	private String name;
-	private int age;
-	private boolean isActive;
-	private List<Order> orderList;
+    private int id;
+    private String name;
+    private int age;
+    private boolean isActive;
+    private List<SalesInvoice> invoiceList = new ArrayList<>();
 
-	public Customer(String name, int age, List<Order> orderList) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.orderList = orderList;
-	}
+    public Customer(String name, int age, List<SalesInvoice> orderList) {
+        super();
+        this.name = name;
+        this.age = age;
+        this.invoiceList = orderList;
+    }
 
-//	public Customer(String name, int age){
-//		this.name = name;
-//		this.age = age;
-//		this.orderList = new ArrayList<>();
-//	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public List<SalesInvoice> getInvoiceList() {
+        return invoiceList;
+    }
 
-	public List<Order> getOrderList() {
-		return orderList;
-	}
+    public void setInvoiceList(List<SalesInvoice> invoiceList) {
+        this.invoiceList = invoiceList;
+    }
 
-	public void setOrderList(List<Order> orderList) {
-		this.orderList = orderList;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public boolean isActive() {
+        return isActive;
+    }
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean active) {
-		isActive = active;
-	}
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

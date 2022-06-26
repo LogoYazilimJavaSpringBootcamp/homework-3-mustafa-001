@@ -3,6 +3,7 @@ package com.logo.model;
 import com.logo.model.enums.StockTransactionType;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StockTransaction {
@@ -11,7 +12,7 @@ public class StockTransaction {
     private StockTransactionType type;
     private LocalDate date;
     private String description;
-    private List<ProductOrServiceAmountPair> products;
+    private List<ProductOrServiceAmountPair> products = new ArrayList<>();
 
     public List<ProductOrServiceAmountPair> getProducts() {
         return products;

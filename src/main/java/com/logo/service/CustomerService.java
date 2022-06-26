@@ -40,7 +40,6 @@ public class CustomerService {
         // ProductService productService = new ProductService;
         // singleton olduğunun kanıtı
         System.out.println("CustomerService - productService:" + productService.toString());
-        System.out.println("CustomerService - productService:" + productService.url);
         System.out.println("CustomerService - orderService:" + orderService.toString());
 
 //		orderService.createOrder();
@@ -68,18 +67,17 @@ public class CustomerService {
             throw new IllegalArgumentException();
         }
         var oldCustomer = oldCustomerOpt.get();
-        if (!customer.getName().equals("")) {
-            oldCustomer.setName(customer.getName());
-        }
+        if (customer.getName() != null) oldCustomer.setName(customer.getName());
         if (customer.getAge() != 0) oldCustomer.setAge(customer.getAge());
         if (customer.isActive() != oldCustomer.isActive()) oldCustomer.setActive(customer.isActive());
+        if (customer.getInvoiceList() != null)  oldCustomer.setInvoiceList(customer.getInvoiceList());
         return oldCustomer;
     }
 
-    public void  delete(int id){
-        System.out.println("Deleting customer: " + id );
+    public void delete(int id) {
+        System.out.println("Deleting customer: " + id);
         var customerOpt = customerRepository.findById(id);
-        if (customerOpt.isEmpty()){
+        if (customerOpt.isEmpty()) {
             throw new IllegalArgumentException();
         }
         customerRepository.delete(customerOpt.get());

@@ -16,9 +16,6 @@ public class SalesInvoiceRepository {
    public SalesInvoice save(SalesInvoice salesInvoice){
        salesInvoice.setId(nextId);
        nextId +=1;
-      if (salesInvoice.getProducts() == null){
-          salesInvoice.setProducts(new ArrayList<>());
-      }
        salesInvoiceList.add(salesInvoice);
        return salesInvoice;
    }
