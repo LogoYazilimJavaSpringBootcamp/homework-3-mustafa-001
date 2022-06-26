@@ -32,7 +32,6 @@ public class UserService {
             System.out.println("RabbitMQ connection refused. Continuing.");
         }
 
-
         return userRepository.save(request);
     }
 

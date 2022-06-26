@@ -1,6 +1,8 @@
 package com.logo.service;
 
+import com.logo.model.ProductOrServiceAmountPair;
 import com.logo.model.StockTransaction;
+import com.logo.repository.ProductRepository;
 import com.logo.repository.StockTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,13 @@ public class StockTransactionService {
     @Autowired
     private StockTransactionRepository stockTransactionRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     public StockTransaction create(StockTransaction request) {
+        request.setProducts(request.getProducts().stream()
+                .map(it -> new ProductOrServiceAmountPair(productRepository.findById(it.product().getId()).get(), it.amount()))
+                .toList());
         return stockTransactionRepository.save(request);
     }
 
@@ -35,6 +43,11 @@ public class StockTransactionService {
         if (oldTransactionOpt.isEmpty()) {
             throw new IllegalArgumentException();
         }
+
+        transaction.setProducts(transaction.getProducts().stream()
+                .map(it -> new ProductOrServiceAmountPair(productRepository.findById(it.product().getId()).get(), it.amount()))
+                .toList());
+
         var oldTransaction = oldTransactionOpt.get();
         if (transaction.getDate() != null) oldTransaction.setDate(transaction.getDate());
         if (transaction.getDocumentNumber() != null) oldTransaction.setDocumentNumber(transaction.getDocumentNumber());

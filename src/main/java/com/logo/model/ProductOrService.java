@@ -8,7 +8,7 @@ import java.util.Currency;
 
 @Data
 abstract class ProductOrService {
-    protected long id;
+    protected int id;
     protected String name;
      UnitType unitType;
     //KDV(Katma Değer Vergisi)/VAT(Value Added Tax)

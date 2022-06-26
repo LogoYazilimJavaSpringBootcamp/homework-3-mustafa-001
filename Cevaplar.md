@@ -18,7 +18,7 @@ Her güncellemede sistemin tamamen güncellenmesi gerektiği için bir hata tüm
 ### SOAP - RESTful karşılaştırın (10 Puan)
 
 SOAP uygulama mantığını gönderip alırken REST veriyi kullanmayı hedefler. SOAP mesajları cache'lenemez, sadece XML dilini destekler ve stateful'dürler.
-REST JSON, XML ve diğer formatları destekler, JSON sayesinde tüm tarayıcılar tarafından desteklenir. SOAP sadece HTTP protokolünü kullanırken REST FTP, QUIC gibi diğer protokolleri de destekler.
+REST JSON, XML, gRPC ve diğer formatları destekler, JSON sayesinde tüm tarayıcılar tarafından desteklenir. SOAP sadece HTTP protokolünü kullanırken REST FTP, QUIC gibi diğer protokolleri de destekler.
 SOAP ACID transaction garantisi sağlar
 
 Richardson Maturity Scale' SOAP servisleri 0. seviyede iken REST servisler genelde 2. yada 3. seviyededirler.

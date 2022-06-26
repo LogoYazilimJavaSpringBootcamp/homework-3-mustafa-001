@@ -1,5 +1,6 @@
 package com.logo.repository;
 
+import com.logo.model.Customer;
 import com.logo.model.Product;
 import com.logo.model.RealWorldService;
 import org.springframework.stereotype.Repository;
@@ -37,6 +38,16 @@ public class ProductRepository {
 
     public List<Product> getProductsStartingWith(String searchQuery) {
        return productList.stream().filter(it -> it.getName().startsWith(searchQuery)).toList();
+    }
+
+    //Client only need to send Product Id to refer to existing product.
+    //We replace product list that came from user with our existing product entities.
+    public List<Product> fetchProductsFromIds(List<Product> emptyProducts) {
+        return emptyProducts.stream()
+                .map(it -> this.findById(it.getId()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }
 

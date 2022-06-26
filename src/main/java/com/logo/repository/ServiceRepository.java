@@ -1,6 +1,7 @@
 package com.logo.repository;
 
 import com.logo.model.RealWorldService;
+import com.logo.model.SalesInvoice;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -36,6 +37,16 @@ public class ServiceRepository {
 
     public List<RealWorldService> getServicesStartingWith(String searchQuery) {
        return serviceList.stream().filter(it -> it.getName().startsWith(searchQuery)).toList();
+    }
+
+    //Client only need to send Service Id to refer to existing service.
+    //We replace service list that came from user with our existing service entities.
+    public List<RealWorldService> fetchServicesFromIds(List<RealWorldService> emptyServices) {
+        return emptyServices.stream()
+                .map(it -> this.findById(it.getId()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }
 
