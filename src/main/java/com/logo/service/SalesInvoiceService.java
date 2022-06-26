@@ -1,19 +1,27 @@
 package com.logo.service;
 
+import com.logo.model.ProductOrServiceAmountPair;
 import com.logo.model.SalesInvoice;
+import com.logo.repository.ProductRepository;
 import com.logo.repository.SalesInvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SalesInvoiceService {
     @Autowired
     private SalesInvoiceRepository salesInvoiceRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     public SalesInvoice create(SalesInvoice request) {
+        request.setProducts(request.getProducts().stream()
+                .map(it -> new ProductOrServiceAmountPair(productRepository.findById(it.product().getId()).get(), it.amount()))
+                .toList());
         return salesInvoiceRepository.save(request);
     }
 
@@ -35,6 +43,11 @@ public class SalesInvoiceService {
         if (oldInvoiceOpt.isEmpty()) {
             throw new IllegalArgumentException();
         }
+
+        salesInvoice.setProducts(salesInvoice.getProducts().stream()
+                .map(it -> new ProductOrServiceAmountPair(productRepository.findById(it.product().getId()).get(), it.amount()))
+                .toList());
+
         var oldInvoice = oldInvoiceOpt.get();
         if (salesInvoice.getDocumentNumber() != null) oldInvoice.setDocumentNumber(salesInvoice.getDocumentNumber());
         if (salesInvoice.getInvoiceDate() != null) oldInvoice.setInvoiceDate(salesInvoice.getInvoiceDate());
@@ -44,7 +57,8 @@ public class SalesInvoiceService {
         if (salesInvoice.getDeliveryDate() != null) oldInvoice.setDeliveryDate(salesInvoice.getDeliveryDate());
         if (salesInvoice.getPaymentDate() != null) oldInvoice.setPaymentDate(salesInvoice.getPaymentDate());
         if (salesInvoice.getDiscountRate() != null) oldInvoice.setDiscountRate(salesInvoice.getDiscountRate());
-        if (salesInvoice.getShipmentAdress().isPresent()) oldInvoice.setShipmentAdress(salesInvoice.getShipmentAdress());
+        if (salesInvoice.getShipmentAdress().isPresent())
+            oldInvoice.setShipmentAdress(salesInvoice.getShipmentAdress());
         return oldInvoice;
     }
 

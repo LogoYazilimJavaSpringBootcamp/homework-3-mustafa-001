@@ -1,7 +1,9 @@
 package com.logo.service;
 
 import com.logo.model.Customer;
+import com.logo.model.SalesInvoice;
 import com.logo.repository.CustomerRepository;
+import com.logo.repository.SalesInvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,10 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private SalesInvoiceRepository salesInvoiceRepository;
+
+
     public CustomerService(OrderService orderService) {
         this.orderService = orderService;
     }
@@ -30,10 +36,9 @@ public class CustomerService {
 
     public Customer create(Customer request) {
         System.out.println("Adding customer:" + request.toString());
-
+        request.setInvoiceList(salesInvoiceRepository.fetchInvoicesFromIds(request.getInvoiceList()));
         return customerRepository.save(request);
     }
-
 
     public List<Customer> getAllCustomers() {
 
@@ -62,15 +67,19 @@ public class CustomerService {
 
     public Customer update(int id, Customer customer) {
         System.out.println("Updating customer: " + id + "  to " + customer.toString());
+        customer.setInvoiceList(salesInvoiceRepository.fetchInvoicesFromIds(customer.getInvoiceList()));
         var oldCustomerOpt = customerRepository.findById(id);
         if (oldCustomerOpt.isEmpty()) {
             throw new IllegalArgumentException();
         }
+
+        customer.setInvoiceList(salesInvoiceRepository.fetchInvoicesFromIds(customer.getInvoiceList()));
+
         var oldCustomer = oldCustomerOpt.get();
         if (customer.getName() != null) oldCustomer.setName(customer.getName());
         if (customer.getAge() != 0) oldCustomer.setAge(customer.getAge());
         if (customer.isActive() != oldCustomer.isActive()) oldCustomer.setActive(customer.isActive());
-        if (customer.getInvoiceList() != null)  oldCustomer.setInvoiceList(customer.getInvoiceList());
+        if (customer.getInvoiceList() != null) oldCustomer.setInvoiceList(customer.getInvoiceList());
         return oldCustomer;
     }
 

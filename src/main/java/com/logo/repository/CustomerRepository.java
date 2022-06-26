@@ -3,6 +3,7 @@ package com.logo.repository;
 import com.logo.model.Customer;
 import com.logo.model.Order;
 import com.logo.model.Product;
+import com.logo.model.SalesInvoice;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -48,5 +49,15 @@ public class CustomerRepository {
 
     public void  delete(Customer customer){
         customers.remove(customer);
+    }
+
+    //Client only need to send Customer Id to refer to existing customer.
+    //We replace customer list that came from user with our existing customer entities.
+    public List<Customer> fetchCustomersFromIds(List<Customer> emptyInvoices) {
+        return emptyInvoices.stream()
+                .map(it -> this.findById(it.getId()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }

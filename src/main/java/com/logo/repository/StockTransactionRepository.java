@@ -35,5 +35,14 @@ public class StockTransactionRepository {
     public Optional<StockTransaction> findByDocumentNumber(String code) {
         return transactionList.stream().filter(it -> it.getDocumentNumber().equals(code)).findFirst();
     }
+    //Client only need to send Transaction Id to refer to existing transaction.
+    //We replace transaction list that came from user with our existing transaction entities.
+    public List<StockTransaction> fetchTransactionsFromIds(List<StockTransaction> emptyTransactions) {
+        return emptyTransactions.stream()
+                .map(it -> this.findById(it.getId()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
 }
 

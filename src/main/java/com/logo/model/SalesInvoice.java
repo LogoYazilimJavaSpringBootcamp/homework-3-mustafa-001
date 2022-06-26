@@ -13,7 +13,7 @@ import java.util.Optional;
 @Data
 @NoArgsConstructor
 public class SalesInvoice {
-    private long id;
+    private int id;
     private Customer customer;
     private Address address;
     private Optional<Address> shipmentAdress;
