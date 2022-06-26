@@ -11,13 +11,13 @@ public class StockTransaction {
     private StockTransactionType type;
     private LocalDate date;
     private String description;
-    private List<ProductAmountPair> products;
+    private List<ProductOrServiceAmountPair> products;
 
-    public List<ProductAmountPair> getProducts() {
+    public List<ProductOrServiceAmountPair> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductAmountPair> products) {
+    public void setProducts(List<ProductOrServiceAmountPair> products) {
         this.products = products;
     }
 

@@ -5,7 +5,6 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +21,7 @@ public class SalesInvoice {
     private LocalDate paymentDate;
     private String documentNumber;
     private Currency currency;
-    private List<ProductAmountPair> products;
+    private List<ProductOrServiceAmountPair> products;
     private BigDecimal discountRate;
 }
 

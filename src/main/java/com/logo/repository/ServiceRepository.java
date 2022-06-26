@@ -31,7 +31,7 @@ public class ServiceRepository {
     }
 
     public Optional<RealWorldService> findByCode(String code) {
-       return serviceList.stream().filter(it -> it.getCode().equals(code)).findFirst();
+       return serviceList.stream().filter(it -> it.getServiceCode().equals(code)).findFirst();
     }
 
     public List<RealWorldService> getServicesStartingWith(String searchQuery) {
