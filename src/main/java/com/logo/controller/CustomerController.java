@@ -15,36 +15,39 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAllCustomers(){
-       return customerService.getAllCustomers();
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("/name")
-    public Customer getByName(@RequestParam String name){
+    public Customer getByName(@RequestParam String name) {
         var customer = customerService.getCustomerByName(name);
         return customer.orElse(null);
     }
 
     @GetMapping("/{id}")
-    public Customer getById(@PathVariable int id){
+    public Customer getById(@PathVariable int id) {
         var customer = customerService.getCustomerById(id);
         return customer.orElse(null);
     }
 
+    @GetMapping("/active/{activeStatus}")
+    public List<Customer> getById(@PathVariable boolean activeStatus) {
+        return customerService.getByIsActive(activeStatus);
+    }
+
     @PostMapping
-    public Customer add(@RequestBody Customer customer){
+    public Customer add(@RequestBody Customer customer) {
         return customerService.create(customer);
     }
-    
+
     @PutMapping("/{id}")
-    public Customer update(@RequestBody Customer customer, @PathVariable int id){
+    public Customer update(@RequestBody Customer customer, @PathVariable int id) {
         return customerService.update(id, customer);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable int id) {
         customerService.delete(id);
     }
-
-
 }

@@ -7,6 +7,7 @@ public class Customer {
 	private int id;
 	private String name;
 	private int age;
+	private boolean isActive;
 	private List<Order> orderList;
 
 	public Customer(String name, int age, List<Order> orderList) {
@@ -52,5 +53,13 @@ public class Customer {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean active) {
+		isActive = active;
 	}
 }

@@ -52,12 +52,17 @@ public class CustomerRepository {
     public Customer save(Customer customer){
         customer.setId(nextId);
         nextId += 1;
+        customer.setActive(true);
         customers.add(customer);
         return customer;
     }
 
     public Optional<Customer> findByName(String name){
         return customers.stream().filter(it -> it.getName().equals(name)).findFirst();
+    }
+
+    public List<Customer> getByIsActive(boolean activeStatus){
+        return customers.stream().filter(it -> it.isActive() == activeStatus).toList();
     }
 
     public Optional<Customer> findById(int id){

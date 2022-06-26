@@ -53,6 +53,10 @@ public class CustomerService {
         return customerRepository.findByName(name);
     }
 
+    public List<Customer> getByIsActive(boolean activeStatus) {
+        return customerRepository.getByIsActive(activeStatus);
+    }
+
     public Optional<Customer> getCustomerById(int id) {
         return customerRepository.findById(id);
     }
@@ -68,6 +72,7 @@ public class CustomerService {
             oldCustomer.setName(customer.getName());
         }
         if (customer.getAge() != 0) oldCustomer.setAge(customer.getAge());
+        if (customer.isActive() != oldCustomer.isActive()) oldCustomer.setActive(customer.isActive());
         return oldCustomer;
     }
 
