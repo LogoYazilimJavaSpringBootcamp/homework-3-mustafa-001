@@ -181,6 +181,187 @@
 			]
 		},
 		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "saveProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0,\n    \"barcode\": \"ABC10QWE\",\n    \"name\": \"armut\",\n    \"unitType\": \"Kilogram\",\n    \"vatRate\": 18,\n    \"currency\": \"TRY\",\n    \"salesPrice\": 20,\n    \"purchasePrice\":15,\n    \"withholdingRatePercent\": 100,\n    \"active\": true,\n    \"cessrate\": 20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProcuct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"kartal bakkal\",\n    \"age\":\"24\",\n    \"orders\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchProductByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/name?name=elma",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "elma"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0,\n    \"code\": null,\n    \"name\": \"kartal bakkal\",\n    \"unitType\": null,\n    \"vatRate\": null,\n    \"currency\": null,\n    \"salesPrice\": null,\n    \"purchasePrice\": null,\n    \"withholdingRatePercent\": null,\n    \"active\": false,\n    \"cessrate\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByBarcode",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0,\n    \"code\": null,\n    \"name\": \"kartal bakkal\",\n    \"unitType\": null,\n    \"vatRate\": null,\n    \"currency\": null,\n    \"salesPrice\": null,\n    \"purchasePrice\": null,\n    \"withholdingRatePercent\": null,\n    \"active\": false,\n    \"cessrate\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/barcode",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"barcode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0,\n    \"code\": null,\n    \"name\": \"kartal bakkal\",\n    \"unitType\": null,\n    \"vatRate\": null,\n    \"currency\": null,\n    \"salesPrice\": null,\n    \"purchasePrice\": null,\n    \"withholdingRatePercent\": null,\n    \"active\": false,\n    \"cessrate\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Users",
 			"item": [
 				{
@@ -279,7 +460,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"kartal bakkal\"\n\n}",
+							"raw": "{\n    \"name\": \"Anayurt Bilgisayar\"\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -349,7 +530,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"kartal bakkal ve şarküteri\",\n    \"age\":\"25\",\n    \"orders\": []\n}",
+							"raw": "{\n    \"age\":\"25\",\n    \"invoiceList\":[ {\n        \"id\": 0,\n        \"customer\": null,\n        \"address\": null,\n        \"shipmentAdress\": null,\n        \"invoiceDate\": null,\n        \"deliveryDate\": null,\n        \"paymentDate\": null,\n        \"documentNumber\": \"AAA1212CCC\",\n        \"currency\": null,\n        \"products\": [],\n        \"discountRate\": null\n    }] ,\n    \"active\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -430,7 +611,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"documentNumber\": \"AAA1212BBB\"\n}",
+							"raw": "{\n    \"id\": 0,\n    \"documentNumber\": \"AAA1212BBB\",\n    \"type\": null,\n    \"date\": null,\n    \"description\": null,\n    \"products\": [\n        {\n            \"product\": {\n                \"id\": 0\n            },\n            \"amount\": 1\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -599,7 +780,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"documentNumber\": \"AAA1212CCC\"\n}",
+							"raw": "{\n    \"id\": 0,\n    \"customer\": null,\n    \"address\": null,\n    \"shipmentAdress\": null,\n    \"invoiceDate\": null,\n    \"deliveryDate\": null,\n    \"paymentDate\": null,\n    \"documentNumber\": \"AAA1212CCC\",\n    \"currency\": null,\n    \"products\": [{\"product\":{\"id\": 0},\"amount\": 1}],\n    \"discountRate\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -634,13 +815,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transactions/1",
+							"raw": "localhost:8080/invoices/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"transactions",
+								"invoices",
 								"1"
 							]
 						}
@@ -653,13 +834,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/transactions/1",
+							"raw": "localhost:8080/invoices/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"transactions",
+								"invoices",
 								"1"
 							]
 						}
@@ -684,13 +865,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transactions",
+							"raw": "localhost:8080/invoices",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"transactions"
+								"invoices"
 							]
 						}
 					},
@@ -743,13 +924,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transactions/1",
+							"raw": "localhost:8080/invoices/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"transactions",
+								"invoices",
 								"1"
 							]
 						}

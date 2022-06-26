@@ -1,8 +1,8 @@
 ### isbasi.com üye olup sisteme 3 yeni model ekleyin ve mimariye uygun şekilde CRUD işlemleri yapan endpointleri yazın. (50 Puan)
 
-[Satış faturaları kısmını modelleryen SalesInvoice](src/main/java/com/logo/model/SalesInvoice.java)
+[Satış faturaları kısmını modelleyen SalesInvoice](src/main/java/com/logo/model/SalesInvoice.java)
 
-[Hizmetler kısmını modelleyen RealWorldServices](src/main/java/com/logo/model/RealWorldService.java)
+[Hizmetler kısmını modelleyen RealWorldService](src/main/java/com/logo/model/RealWorldService.java)
 
 [Stok işlemleri kısmını modelleyen StockTransaction](src/main/java/com/logo/model/StockTransaction.java)
 
